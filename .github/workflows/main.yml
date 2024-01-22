@@ -17,6 +17,8 @@ jobs:
 
     - name: Implementar en producción
       run: |
-        git checkout prueba2
-        git merge --allow-unrelated-histories ${{ github.sha }} -m "Implementar cambios desde la rama de prueba"
-        git push prueba2
+          git config user.email "aandresarango087@gmail.com"
+          git config user.name "Andres"
+          git checkout prueba2
+          git merge --allow-unrelated-histories ${{ github.sha }} -m "Implementar cambios desde la rama de prueba"
+          git push prueba2
