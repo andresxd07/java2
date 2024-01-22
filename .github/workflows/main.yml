@@ -11,14 +11,18 @@ jobs:
     
     steps:
     - name: Verificar cambios en la rama de prueba
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
       with:
         ref: prueba
 
-    - name: Implementar en producción
+    - name: Configurar Git
       run: |
-          git config user.email "aandresarango087@gmail.com"
-          git config user.name "Andress"
-          git checkout prueba2
-          git merge --allow-unrelated-histories ${{ github.sha }} -m "Implementar cambios desde la rama de prueba"
-          git push origin prueba2
+        git config user.email "aandresarango087@gmail.com"
+        git config user.name "Andres"
+
+    - name: Fusionar cambios automáticamente en la rama prueba2
+      run: |
+        git fetch origin
+        git checkout prueba2
+        git merge --no-ff origin/prueba -m "Automatically merge changes from prueba to prueba2"
+        git push origin prueba2
