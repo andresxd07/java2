@@ -1,0 +1,24 @@
+name: Implementación Automática
+
+on:
+  push:
+    branches:
+      - prueba
+
+jobs:
+  implementacion:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Verificar cambios en la rama de prueba
+      uses: actions/checkout@v4
+      with:
+        ref: prueba
+
+    - name: Implementar en producción
+      run: |
+          git config user.email "aandresarango087@gmail.com"
+          git config user.name "Andress"
+          git checkout prueba2
+          git merge --allow-unrelated-histories ${{ github.sha }} -m "Implementar cambios desde la rama de prueba"
+          git push origin prueba2
