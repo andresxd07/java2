@@ -25,4 +25,9 @@ jobs:
         git fetch origin
         git checkout prueba2
         git merge --allow-unrelated-histories --no-ff origin/prueba -m "Automatically merge changes from prueba to prueba2"
+
+        git checkout --theirs .
+        
+        git add .
+        git commit -m "Automatically resolve merge conflicts"
         git push origin prueba2
